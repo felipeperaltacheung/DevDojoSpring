@@ -2,6 +2,8 @@ package com.example.devdojospring.controller;
 
 import com.example.devdojospring.domain.Anime;
 import com.example.devdojospring.util.DateUtil;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("anime")
 @Log4j2
+@RequiredArgsConstructor
 public class AnimeController {
 
-    @Autowired
-    private DateUtil dateUtil;
+
+    private final DateUtil dateUtil;
+
 
     //@RequestMapping(method = RequestMethod.GET, path = "list") -> antigo
     @GetMapping(path = "list")
