@@ -2,6 +2,7 @@ package com.example.devdojospring.service;
 
 
 import com.example.devdojospring.domain.Anime;
+import com.example.devdojospring.mapper.AnimeMapper;
 import com.example.devdojospring.repository.AnimeRepository;
 import com.example.devdojospring.requests.AnimePostRequestBody;
 import com.example.devdojospring.requests.AnimePutRequestBody;
@@ -27,7 +28,7 @@ public class AnimeService{
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        return animeRepository.save(Anime.builder().name(animePostRequestBody.getName()).build());
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
 
     public void delete(long id) {
@@ -36,11 +37,8 @@ public class AnimeService{
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-        Anime anime = Anime.builder()
-                .id(savedAnime.getId())
-                .name(animePutRequestBody.getName())
-                .build();
-
+        Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
+        anime.setId(savedAnime.getId());
         animeRepository.save(anime);
     }
 }
