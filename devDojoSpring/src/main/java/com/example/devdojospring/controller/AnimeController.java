@@ -4,28 +4,29 @@ import com.example.devdojospring.domain.Anime;
 import com.example.devdojospring.requests.AnimePostRequestBody;
 import com.example.devdojospring.requests.AnimePutRequestBody;
 import com.example.devdojospring.service.AnimeService;
-import com.example.devdojospring.util.DateUtil;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("animes")
 @Log4j2
-@RequiredArgsConstructor
 public class AnimeController {
 
-    private final DateUtil dateUtil;
+   // private final DateUtil dateUtil;
+
     private final AnimeService animeService;
+
+    public AnimeController(AnimeService animeService) {
+        this.animeService = animeService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Anime>> list (){
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        //log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         //return new ResponseEntity<>(animeService.listAll(), HttpStatus.OK); ou
         return ResponseEntity.ok(animeService.listAll());
     }
@@ -33,6 +34,12 @@ public class AnimeController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> findById(@PathVariable long id){
         return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
+    }
+
+
+    @GetMapping(path = "/find")
+    public ResponseEntity<List<Anime>> findByName(@RequestParam String name){
+        return ResponseEntity.ok(animeService.findByName(name));
     }
 
     @PostMapping

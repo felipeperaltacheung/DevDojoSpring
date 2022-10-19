@@ -6,7 +6,6 @@ import com.example.devdojospring.mapper.AnimeMapper;
 import com.example.devdojospring.repository.AnimeRepository;
 import com.example.devdojospring.requests.AnimePostRequestBody;
 import com.example.devdojospring.requests.AnimePutRequestBody;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,13 +13,19 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class AnimeService{
 
     private final AnimeRepository animeRepository;
+
+    public AnimeService(AnimeRepository animeRepository) {
+        this.animeRepository = animeRepository;
+    }
+
     public List<Anime> listAll(){
         return animeRepository.findAll();
     }
+
+    public List<Anime> findByName(String name){ return animeRepository.findByName(name);}
 
     public Anime findByIdOrThrowBadRequestException(long id) {
         return animeRepository.findById(id)
