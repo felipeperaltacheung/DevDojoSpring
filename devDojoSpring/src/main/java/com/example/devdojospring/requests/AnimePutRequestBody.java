@@ -7,5 +7,4 @@ public class AnimePutRequestBody {
 
     private Long id;
     private String name;
-    
 }

@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public abstract class AnimeMapper {
-    public static final AnimeMapper INSTANCE = Mappers.getMapper(AnimeMapper.class);
+    public static final AnimeMapper INSTANCE = Mappers.getMapper(AnimeMapper.class); //para chamar os metodos
     public abstract Anime toAnime(AnimePostRequestBody animePostRequestBody);
 
     public abstract Anime toAnime(AnimePutRequestBody animePostRequestBody);
