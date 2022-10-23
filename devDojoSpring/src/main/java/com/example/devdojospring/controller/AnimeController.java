@@ -1,9 +1,9 @@
 package com.example.devdojospring.controller;
 
 import com.example.devdojospring.domain.Anime;
-import com.example.devdojospring.requests.AnimePostRequestBody;
-import com.example.devdojospring.requests.AnimePutRequestBody;
+import com.example.devdojospring.requests.AnimeDTO;
 import com.example.devdojospring.service.AnimeService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +14,13 @@ import java.util.List;
 @RestController
 @RequestMapping("animes")
 @Log4j2
+@RequiredArgsConstructor
 public class AnimeController {
-
-   // private final DateUtil dateUtil;
 
     private final AnimeService animeService;
 
-    public AnimeController(AnimeService animeService) {
-        this.animeService = animeService;
-    }
+    //private final DateUtil dateUtil;
+
 
     @GetMapping
     public ResponseEntity<List<Anime>> list (){
@@ -43,8 +41,8 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
-        return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Anime> create(@RequestBody AnimeDTO animeDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(animeService.save(animeDTO));
     }
 
     @DeleteMapping(path = "/{id}")
@@ -53,10 +51,5 @@ public class AnimeController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody){
-        animeService.replace(animePutRequestBody);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 
 }

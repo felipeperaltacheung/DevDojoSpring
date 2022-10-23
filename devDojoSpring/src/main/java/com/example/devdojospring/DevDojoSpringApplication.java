@@ -1,14 +1,19 @@
 package com.example.devdojospring;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-//@ComponentScan(basePackages = "com.example.devdojospring.start") // para alterar o local do main -> ex. /start/SpringApplication
 public class DevDojoSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DevDojoSpringApplication.class, args);
     }
 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 }
