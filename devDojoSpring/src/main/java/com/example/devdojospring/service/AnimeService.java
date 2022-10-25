@@ -7,6 +7,7 @@ import com.example.devdojospring.repository.AnimeRepository;
 import com.example.devdojospring.requests.AnimeDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -33,10 +34,14 @@ public class AnimeService{
                 .orElseThrow(() -> new BadRequestException("Anime not found"));
     }
 
+    @Transactional
     public Anime save(AnimeDTO animeDTO) {
         Anime anime = modelMapper.map(animeDTO, Anime.class);
         return animeRepository.save(anime);
     }
+
+
+
 
     public void delete(long id) {
         animeRepository.delete(findByIdOrThrowBadRequestException(id));
