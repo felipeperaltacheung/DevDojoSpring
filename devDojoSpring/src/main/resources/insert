@@ -1,0 +1,12 @@
+INSERT INTO anime.anime (name) VALUES ('gdk');
+INSERT INTO anime.anime (name) VALUES ('Naruto');
+INSERT INTO anime.anime (name) VALUES ('DBZ');
+INSERT INTO anime.anime (name) VALUES ('Overloading');
+INSERT INTO anime.anime (name) VALUES ('Cowboy');
+INSERT INTO anime.anime (name) VALUES ('Stains');
+INSERT INTO anime.anime (name) VALUES ('Bersek');
+INSERT INTO anime.anime (name) VALUES ('God Eater');
+INSERT INTO anime.anime (name) VALUES ('Grand Blue');
+INSERT INTO anime.anime (name) VALUES ('Hellsing');
+INSERT INTO anime.anime (name) VALUES ('Bleach');
+INSERT INTO anime.anime (name) VALUES ('Harman Kardon');
