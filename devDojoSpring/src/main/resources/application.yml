@@ -14,5 +14,11 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        show_sql: true
+ #       show_sql: true
     generate-ddl: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
